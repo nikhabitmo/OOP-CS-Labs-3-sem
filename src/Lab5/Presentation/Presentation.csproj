@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Windows</DockerDefaultTargetOS>
+        <RootNamespace>WebApplication1</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.Negotiate" Version="7.0.9"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\..\..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Workshop5.Presentation.Console\bin\Debug\net7.0\Workshop5.Presentation.Console.deps.json" />
+      <_ContentIncludedByDefault Remove="Workshop5.Presentation.Console\obj\project.assets.json" />
+      <_ContentIncludedByDefault Remove="Workshop5.Presentation.Console\obj\project.packagespec.json" />
+      <_ContentIncludedByDefault Remove="Workshop5.Presentation.Console\obj\Workshop5.Presentation.Console.csproj.nuget.dgspec.json" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Application\Application\Application.csproj" />
+      <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Pages\" />
+      <Folder Include="Views\Pages\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="Views\Shared\_Layout2.css">
+        <DependentUpon>_Layout2.cshtml</DependentUpon>
+      </None>
+    </ItemGroup>
+
+</Project>

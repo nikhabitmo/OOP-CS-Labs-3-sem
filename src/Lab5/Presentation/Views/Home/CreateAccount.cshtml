@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Create an Account";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+{
+    <p style="color: red;">@ViewData["ErrorMessage"]</p>
+}
+
+<form method="post" action="/CreateAccount/Create">
+    <label for="UserName">Name and Surname:</label>
+    <input type="text" id="UserName" name="UserName" required>
+
+    <label for="pin">Pin (max 4 characters):</label>
+    <input type="text" id="pin" name="pin" maxlength="4" required>
+
+
+    <button type="submit">Create Account</button>
+    
+    @if (TempData["AccountCreatedMessage"] != null)
+    {
+        <p style="color: green;">@TempData["AccountCreatedMessage"]</p>
+    }
+</form>
+
+<h6>"If you want to create an account, please fill out the form with the required information."</h6>

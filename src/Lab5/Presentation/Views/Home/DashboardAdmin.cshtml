@@ -1,0 +1,45 @@
+﻿@using ApplicationModels.Account
+@using Newtonsoft.Json
+@{
+    ViewData["Title"] = "Admin Panel";
+    Layout = "_Layout2";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form method="post" action="/DashboardAdmin/ChangeSystemPassword">
+    <label for="currentSystemPassword">Current System Password:</label>
+    <input type="password" id="currentSystemPassword" name="currentSystemPassword" required>
+
+    <label for="newSystemPassword">New System Password:</label>
+    <input type="password" id="newSystemPassword" name="newSystemPassword" required>
+
+    <button type="submit">Change System Password</button>
+</form>
+
+<form method="post" action="/DashboardAdmin/GetAllAccounts">
+    <button type="submit">Get Information about all accounts</button>
+    
+    @{
+        var accountsJson = TempData["Accounts"] as string;
+        if (accountsJson != null)
+        {
+            var accounts = JsonConvert.DeserializeObject<List<Account>>(accountsJson);
+        
+            if (accounts != null && accounts.Any())
+            {
+                <h3>Accounts Information:</h3>
+                <ul>
+                    @foreach (var account in accounts)
+                    {
+                        <li>Id: @account.Id, Name: @account.Name, Balance: @account.Balance, Pin: @account.Pin</li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No accounts available</p>
+            }
+        }
+    }
+</form>

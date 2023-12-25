@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Login";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+@if (!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+{
+    <p style="color: red;">@ViewData["ErrorMessage"]</p>
+}
+
+<form method="post" action="/Login/Login">
+    <label for="id">Id:</label>
+    <input type="text" id="id" name="id" required>
+
+    <br />
+
+    <label for="pin">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <br />
+
+    <button type="submit">Login</button>
+</form>
+
+<h6>"If you want to login as an admin, you should put the id = 1 and correct password:"</h6>
